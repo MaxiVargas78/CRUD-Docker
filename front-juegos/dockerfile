@@ -1,0 +1,17 @@
+#Se utiliza imagen de NodeJS
+FROM node:10-alpine as build-step
+#Se crea el directorio frontend para trabajar
+WORKDIR /frontend
+#Se copia el archivo package.json dentro del directorio nuevo
+# para luego instalar todas las dependencias necesarias.
+COPY package.json /frontend
+RUN npm install
+#Se copia todo dentro del directorio.
+COPY . /frontend
+# Se construye la aplicacion en modo producción
+RUN npm run build
+# Se monta un servidor web a través de la imagen de NGINX
+FROM nginx:1.17.1-alpine
+#Finalmente se copian los archivos de build dentro del directorio html de NGINX
+# para correr el servidor.
+COPY --from=build-step /frontend/build /usr/share/nginx/html
