@@ -29,7 +29,8 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 ALLOWED_HOSTS = []
 
-CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'http://127.0.0.1:3000']
+CORS_ALLOWED_ORIGINS = []
+#CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'http://127.0.0.1:3000','http://0.0.0.0:3000']
 
 
 # Application definition
@@ -84,8 +85,14 @@ WSGI_APPLICATION = 'APPDocker.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'postgres', #Usuario PostgreSQL
+        'PASSWORD': 'postgres', #contraseña creada en PostgreSQL con el comando \password
+        'HOST': 'db',
+        'PORT': '5432' #Asignar puerto de ser necesario
+
+        #ENGINE': 'django.db.backends.postgresql', #si este no funciona probar con postgresql_psycopg2 (además>
     }
 }
 

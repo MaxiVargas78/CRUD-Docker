@@ -1,0 +1,47 @@
+version: "3.9"
+
+# Se configuran los diferentes servicios (contenedores) a utilizar.
+services:
+
+  #Servicio backend utiliza una imagen precreada a partir del dockerfile,
+  # utiliza las variables de ambiente y asigna un puerto. Además se señala la dependencia a servicio 'db'
+  backend:
+    image: backend-crud
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  #Servicio db utiliza una imagen oficial de postgres en Docker,
+  # utiliza las variables de ambiente y asigna un puerto.
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    expose:
+      - "5432"
+    ports:
+      - "55432:5432"
+
+  #Servicio frontend crea un contenedor a partir del dockerfile,
+  # asigna un puerto y además se señala la dependencia a servicio 'backend'
+  frontend:
+    build: ./front-juegos
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend    
+
+volumes:
+  static_volume:
+  postgres_data:
