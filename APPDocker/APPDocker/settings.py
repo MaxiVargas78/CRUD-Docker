@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -85,16 +86,23 @@ WSGI_APPLICATION = 'APPDocker.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres', #Usuario PostgreSQL
-        'PASSWORD': 'postgres', #contraseña creada en PostgreSQL con el comando \password
-        'HOST': 'db',
-        'PORT': '5432' #Asignar puerto de ser necesario
-
-        #ENGINE': 'django.db.backends.postgresql', #si este no funciona probar con postgresql_psycopg2 (además>
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+#DATABASES = {
+ #   'default': {
+  #      'ENGINE': 'django.db.backends.postgresql_psycopg2',
+   #     'NAME': 'postgres',
+    #    'USER': 'postgres', #Usuario PostgreSQL
+     #   'PASSWORD': 'postgres', #contraseña creada en PostgreSQL con el comando \password
+      #  'HOST': 'db',
+       # 'PORT': '5432' #Asignar puerto de ser necesario
+
+        #ENGINE': 'django.db.backends.postgresql', #si este no funciona probar con postgresql_psycopg2 (además>
+ #   }
+#}
 
 
 # Password validation

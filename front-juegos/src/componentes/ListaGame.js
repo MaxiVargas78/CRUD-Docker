@@ -19,7 +19,7 @@ export const ListaJuegos = () => {
         }
     };
     axios 
-        .get(`http://127.0.0.1:8000/api/Juego/`, config)
+        .get(`http://127.0.0.1:52893/api/Juego/`, config)
         .then((response) => { setJuegos(response.data);})
         .catch((e) => { console.error(e);});
   };
@@ -33,7 +33,7 @@ export const ListaJuegos = () => {
         }
     };
     axios
-        .delete(`http://127.0.0.1:8000/api/Juego/${id}/`, config)
+        .delete(`http://127.0.0.1:52893/api/Juego/${id}/`, config)
         .then((response) => { setElimina(true); recuperaAllLista();})
         .catch((e) => { console.error(e);});
   };

@@ -16,4 +16,4 @@ COPY wait-for-postgres.sh wait.sh
 #Finalmente se copia todo dentro del directorio
 COPY  ./ /backend/
 # A través del siguiente comando inicia el servidor y asigna el puerto a utilizar.
-CMD ["/backend/wait.sh", "db", "python","manage.py","runserver","0.0.0.0:8000"]
+CMD ["python","manage.py","runserver","0.0.0.0:8080"]

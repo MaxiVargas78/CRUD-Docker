@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontjuego
+spec:
+  selector:
+    app: frontjuego
+  ports:
+  - protocol: "TCP"
+    port: 8080
+    targetPort: 80
+    nodePort: 30050
+  type: LoadBalancer
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontjuego
+spec:
+  selector:
+    matchLabels:
+      app: frontjuego
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: frontjuego
+    spec:
+      containers:
+      - name: frontjuego
+        image: docker.io/library/frontjuego1:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
