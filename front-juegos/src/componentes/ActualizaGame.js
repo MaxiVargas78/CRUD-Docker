@@ -128,7 +128,7 @@ export const ActualizaJuegos = () => {
               />
             </div>
             <div className="form-group  text-white mb-3 ">
-              <label htmlFor="Reseña">Reseña nueva...</label>
+              <label htmlFor="Reseña">Escriba una reseña nueva...</label>
               <input
                 type="text"
                 className="form-control"
