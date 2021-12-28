@@ -32,7 +32,7 @@ export const AgregaJuegos = () => {
         }
     };
     axios
-        .post(`http://127.0.0.1:52893/api/Juego/`,data, config)
+        .post(`http://127.0.0.1:64490/api/Juego/`,data, config)
         .then((response) => {
             setJuego({
                 Nombre: response.data.Nombre,

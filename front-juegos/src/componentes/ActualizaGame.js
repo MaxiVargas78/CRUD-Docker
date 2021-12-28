@@ -32,7 +32,7 @@ export const ActualizaJuegos = () => {
             }
         };
         axios
-            .get(`http://127.0.0.1:52893/api/Juego/${id}/`, config)
+            .get(`http://127.0.0.1:64490/api/Juego/${id}/`, config)
             .then((response) => {
                 setJuegoActual({
                 id: response.data.id,
@@ -62,7 +62,7 @@ export const ActualizaJuegos = () => {
           Reseña: juegoActual.Reseña,
         };
         axios
-            .put(`http://127.0.0.1:52893/api/Juego/${id}/`,data, config)
+            .put(`http://127.0.0.1:64490/api/Juego/${id}/`,data, config)
             .then((response) => {
                 setJuegoActual({
                 Nombre: response.data.Nombre,
