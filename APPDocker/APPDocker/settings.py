@@ -47,10 +47,12 @@ INSTALLED_APPS = [
     'corsheaders',
     'Juegos',
     'storages',
+    'elasticapm.contrib.django',
 ]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'elasticapm.contrib.django.middleware.TracingMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -151,11 +153,26 @@ AWS_S3_OBJECT_PARAMETERS = {
 }
 AWS_LOCATION = 'static'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'mysite/static'),
-]
+
 STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+ELASTIC_APM = {
+# Set the required service name. Allowed characters:
+# a-z, A-Z, 0-9, -, _, and space
+'SERVICE_NAME': 'observaArqui',
+
+# Use if APM Server requires a secret token
+'SECRET_TOKEN': 'dgmnqcbw3Nu3noSn0s',
+
+
+# Set the custom APM Server URL (default: http://localhost:8200)
+'SERVER_URL': 'https://3c48d2f5221f46f18ea3f8098e4c549c.apm.us-east-1.aws.cloud.es.io:443',
+
+# Set the service environment
+'ENVIRONMENT': 'production',
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
